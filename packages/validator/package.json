@@ -1,0 +1,12 @@
+{
+  "name": "@snirp/signup-validator",
+  "version": "0.1.0",
+  "description": "Shared validation library for signup monorepo tutorial",
+  "main": "./dist/index.js",
+  "author": "Roy Prins <prinsroy@gmail.com>",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  }
+}

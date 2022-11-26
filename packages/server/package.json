@@ -1,0 +1,25 @@
+{
+  "name": "@snirp/signup-server",
+  "version": "0.1.0",
+  "description": "ExpressJS server for the signup monorepo tutorial",
+  "main": "./dist/index.js",
+  "author": "Roy Prins <prinsroy@gmail.com>",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon -e ts,js --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@snirp/signup-validator": "workspace:*",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "4.17.12",
+    "@types/node": "^14.14.6",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  }
+}
