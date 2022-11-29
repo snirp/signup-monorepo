@@ -1,7 +1,3 @@
-const hello = "Hello world";
-
-export default hello;
-
 interface Feedback {
   valid: boolean;
   message: string;
@@ -9,6 +5,7 @@ interface Feedback {
 
 type Validator = (input: string) => Feedback;
 
+// All string validators
 export const min =
   (val: number): Validator =>
   (input) => ({
