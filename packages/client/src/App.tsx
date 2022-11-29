@@ -1,14 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { validatePassword } from "@snirp/signup-validator/src";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          {validatePassword("ee8FF").map(({ valid, message }, idx) => (
+            <div key={idx}>
+              {valid} {message}
+            </div>
+          ))}
         </p>
         <a
           className="App-link"
