@@ -40,16 +40,11 @@ export const email: Validator = (input) => ({
   message: "Please enter a valid email address",
 });
 
-export const validation =
+export const validate =
   (...fs: Validator[]) =>
   (input: string) =>
     fs.map((f) => f(input));
 
 // Some ready made validators
-export const passwordValidation = validation(
-  min(8),
-  hasUpper,
-  hasLower,
-  hasNumber
-);
-export const emailValidation = validation(max(256), email);
+export const validatePassword = validate(min(8), hasUpper, hasLower, hasNumber);
+export const validateEmail = validate(max(256), email);
