@@ -1,6 +1,13 @@
 import cors from "cors";
 import express from "express";
-import { validatePassword, validateEmail } from "@snirp/signup-validator/src";
+import {
+  validatePassword,
+  max,
+  email,
+  freshEmail,
+  validate,
+  getErrors,
+} from "@snirp/signup-validator/src";
 
 const port = process.env.PORT || 8005;
 
@@ -8,11 +15,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/", async (req: express.Request, res: express.Response) => {
+const emails = ["test@test.com", "example@example.com"];
+const serverValidateEmail = validate(max(256), email, freshEmail(emails));
+
+app.post("/validate", async (req: express.Request, res: express.Response) => {
   const { password, email } = req.body;
   res.json({
-    password: validatePassword(password),
-    email: validateEmail(email),
+    password: getErrors(validatePassword(password)),
+    email: getErrors(serverValidateEmail(email)),
   });
 });
 

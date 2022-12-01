@@ -1,9 +1,9 @@
-interface Feedback {
+export interface Feedback {
   valid: boolean;
   message: string;
 }
 
-type Validator = (input: string) => Feedback;
+export type Validator = (input: string) => Feedback;
 
 // All string validators
 export const min =
@@ -40,6 +40,13 @@ export const email: Validator = (input) => ({
   message: "Please enter a valid email address",
 });
 
+export const freshEmail =
+  (emails: string[]): Validator =>
+  (input) => ({
+    valid: !emails.includes(input),
+    message: "This email address is already taken",
+  });
+
 export const validate =
   (...fs: Validator[]) =>
   (input: string) =>
@@ -48,3 +55,9 @@ export const validate =
 // Some ready made validators
 export const validatePassword = validate(min(8), hasUpper, hasLower, hasNumber);
 export const validateEmail = validate(max(256), email);
+
+export const isValid = (results: Feedback[]) =>
+  results.every(({ valid }) => valid);
+
+export const getErrors = (results: Feedback[]) =>
+  results.filter(({ valid }) => !valid).map(({ message }) => message);
